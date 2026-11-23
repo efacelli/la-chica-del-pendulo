@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="es-AR" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Chica del Péndulo · Registros Akáshicos en Santiago del Estero y online</title>
+  <meta name="description" content="Daiana Peccia — La Chica del Péndulo. Lecturas de Registros Akáshicos, sanación, péndulo y rituales de luna. Encuentros presenciales en Santiago del Estero Capital y consultas virtuales a todo el mundo.">
+  <meta name="theme-color" content="#0b0d22">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="La Chica del Péndulo · Registros Akáshicos">
+  <meta property="og:description" content="Lecturas de Registros Akáshicos, sanación y rituales de luna con Daiana Peccia. Presencial en Santiago del Estero y virtual.">
+  <meta property="og:image" content="assets/daiana.webp">
+  <meta property="og:locale" content="es_AR">
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "La Chica del Péndulo",
+    "founder": "Daiana Peccia",
+    "description": "Lecturas de Registros Akáshicos, sanación akáshica, péndulo y rituales de luna. Presencial y virtual.",
+    "telephone": "+54 9 3855 97-2750",
+    "image": "assets/daiana.webp",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santiago del Estero",
+      "addressRegion": "Santiago del Estero",
+      "addressCountry": "AR"
+    },
+    "areaServed": ["Santiago del Estero", "Argentina", "Online"]
+  }
+  </script>
+</head>
+<body>
+  <canvas id="sky" aria-hidden="true"></canvas>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="top">
+    <div class="nav__inner">
+      <a href="#top" class="brand" aria-label="La Chica del Péndulo, inicio">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M20 4a12 12 0 1 0 8 20A10 10 0 1 1 20 4z" fill="currentColor"/>
+          <line x1="16" y1="0" x2="16" y2="16" stroke="currentColor" stroke-width="1"/>
+          <path d="M16 16l2.4 3.2L16 26l-2.4-6.8z" fill="currentColor"/>
+        </svg>
+        <span>La Chica del Péndulo</span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#como-es">Cómo es</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="#" class="btn btn--small btn--gold" data-wa="general">Agendar turno</a>
+      </nav>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow">Registros Akáshicos · Péndulo · Luna</p>
+        <h1>Volvé a escuchar<br><em>la voz de tu alma</em></h1>
+        <p class="lead">Soy <strong>Daiana Peccia</strong>. Abro tus Registros Akáshicos para que encuentres claridad, sueltes lo que ya no te pertenece y camines tu propósito con el ritmo de la luna.</p>
+        <div class="hero__ctas">
+          <a href="#" class="btn btn--gold" data-wa="lectura">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+            Agendar mi lectura
+          </a>
+          <a href="#servicios" class="btn btn--ghost">Ver servicios</a>
+        </div>
+        <ul class="hero__chips">
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>Presencial en Santiago del Estero</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"/></svg>Virtual a todo el mundo</li>
+        </ul>
+        <aside class="moonphase" id="moonphase" aria-live="polite">
+          <svg viewBox="0 0 40 40" class="moonphase__icon" aria-hidden="true">
+            <circle cx="20" cy="20" r="17" class="moonphase__dark"/>
+            <path id="moonphasePath" class="moonphase__lit" d=""/>
+          </svg>
+          <div>
+            <p class="moonphase__label">La luna hoy</p>
+            <p class="moonphase__name" id="moonphaseName">—</p>
+            <p class="moonphase__tip" id="moonphaseTip"></p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="moon">
+          <div class="moon__glow"></div>
+          <div class="moon__body"></div>
+        </div>
+        <svg class="pendulum" viewBox="0 0 60 340">
+          <defs>
+            <linearGradient id="crystal" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f4ecff"/>
+              <stop offset=".45" stop-color="#b9a4ef"/>
+              <stop offset="1" stop-color="#5e4aa8"/>
+            </linearGradient>
+          </defs>
+          <line x1="30" y1="0" x2="30" y2="262" class="pendulum__chain"/>
+          <circle cx="30" cy="264" r="3.5" class="pendulum__ring"/>
+          <path d="M30 268 L44 288 L30 336 L16 288 Z" fill="url(#crystal)"/>
+          <path d="M30 268 L44 288 L30 296 Z" fill="#fff" opacity=".45"/>
+          <path d="M16 288 L30 296 L30 336 Z" fill="#2c1f63" opacity=".35"/>
+        </svg>
+      </div>
+
+    </section>
+
+    <!-- ============ FREE CALL STRIP ============ -->
+    <section class="strip reveal">
+      <p><span class="sparkle">✦</span> ¿No sabés por dónde empezar? <strong>La primera charla de 15 minutos es sin cargo.</strong></p>
+      <a href="#" class="btn btn--small btn--ghost" data-wa="charla">Quiero mi charla gratis</a>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section class="section" id="servicios">
+      <header class="section__head reveal">
+        <p class="eyebrow">Servicios</p>
+        <h2>Encuentros para volver a vos</h2>
+        <p class="section__sub">Elegí cómo preferís tu encuentro y te escribo con todo listo.</p>
+        <div class="toggle" role="radiogroup" aria-label="Modalidad">
+          <button role="radio" aria-checked="true" data-mode="virtual" class="toggle__opt is-on">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"/></svg>Virtual
+          </button>
+          <button role="radio" aria-checked="false" data-mode="presencial" class="toggle__opt">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>Presencial
+          </button>
+        </div>
+      </header>
+
+      <div class="cards">
+        <article class="card card--featured reveal" data-service="lectura" data-modes="virtual presencial">
+          <span class="card__tag">La más elegida</span>
+          <div class="card__icon"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-book"/></svg></div>
+          <h3>Lectura de Registros Akáshicos</h3>
+          <p>Abro tus Registros para recibir guía sobre lo que hoy te inquieta: vínculos, propósito, bloqueos, decisiones. Te llevás claridad y un resumen escrito de la lectura.</p>
+          <ul class="card__meta">
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>60 a 75 min</li>
+            <li class="card__modes"></li>
+          </ul>
+          <a href="#" class="btn btn--gold btn--block" data-wa="lectura">Agendar esta lectura</a>
+        </article>
+
+        <article class="card reveal" data-service="sanacion" data-modes="virtual presencial">
+          <div class="card__icon"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-lotus"/></svg></div>
+          <h3>Sanación Akáshica</h3>
+          <p>Trabajamos patrones que se repiten, lazos y memorias que ya no te pertenecen, para soltarlos con amor y hacer lugar a lo nuevo.</p>
+          <ul class="card__meta">
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>75 min</li>
+            <li class="card__modes"></li>
+          </ul>
+          <a href="#" class="btn btn--outline btn--block" data-wa="sanacion">Agendar sanación</a>
+        </article>
+
+        <article class="card reveal" data-service="pendulo" data-modes="virtual presencial">
+          <div class="card__icon"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-pendulum"/></svg></div>
+          <h3>Péndulo y Armonización de Chakras</h3>
+          <p>Con el péndulo detecto dónde está bloqueada tu energía y armonizamos tus chakras para que vuelvas a sentirte liviana, liviano, en eje.</p>
+          <ul class="card__meta">
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>50 min</li>
+            <li class="card__modes"></li>
+          </ul>
+          <a href="#" class="btn btn--outline btn--block" data-wa="pendulo">Agendar armonización</a>
+        </article>
+
+        <article class="card reveal" data-service="lunanatal" data-modes="virtual presencial">
+          <div class="card__icon"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-moon"/></svg></div>
+          <h3>Lectura de Luna Natal</h3>
+          <p>Tu Luna en la carta natal habla de tus emociones, de cómo te cuidás y de lo que necesitás para sentirte en casa. La leemos juntas, juntos.</p>
+          <ul class="card__meta">
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>60 min</li>
+            <li class="card__modes"></li>
+          </ul>
+          <a href="#" class="btn btn--outline btn--block" data-wa="lunanatal">Agendar Luna Natal</a>
+        </article>
+
+        <article class="card reveal" data-service="circulo" data-modes="presencial">
+          <div class="card__icon"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-circle"/></svg></div>
+          <h3>Círculo de Luna</h3>
+          <p>Encuentro grupal en Luna Nueva y Luna Llena: meditación, intenciones y ritual para sembrar y soltar en comunidad. Cupos limitados.</p>
+          <ul class="card__meta">
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>2 horas</li>
+            <li class="card__modes"></li>
+          </ul>
+          <a href="#" class="btn btn--outline btn--block" data-wa="circulo">Reservar mi lugar</a>
+        </article>
+
+        <article class="card card--soft reveal" data-service="charla" data-modes="virtual">
+          <div class="card__icon"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-spark"/></svg></div>
+          <h3>Primera charla sin cargo</h3>
+          <p>15 minutos para conocernos, contarme qué estás atravesando y ver juntas, juntos, qué encuentro te puede acompañar mejor.</p>
+          <ul class="card__meta">
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg>15 min · gratis</li>
+            <li class="card__modes"></li>
+          </ul>
+          <a href="#" class="btn btn--outline btn--block" data-wa="charla">Quiero mi charla</a>
+        </article>
+      </div>
+      <p class="note reveal">Los valores se consultan por WhatsApp. Podés abonar por transferencia o Mercado Pago.</p>
+    </section>
+
+    <!-- ============ SOBRE MÍ ============ -->
+    <section class="section about" id="sobre-mi">
+      <figure class="about__photo reveal">
+        <div class="arch">
+          <img src="assets/daiana.webp" alt="Daiana Peccia sonriendo junto a su lámpara de luna, frente a su computadora" width="880" height="1016" loading="lazy">
+        </div>
+        <figcaption>Daiana Peccia · La Chica del Péndulo</figcaption>
+      </figure>
+      <div class="about__text reveal">
+        <p class="eyebrow">Sobre mí</p>
+        <h2>Hola, soy <em>Dai</em></h2>
+        <p>Desde chica sentí que la luna me hablaba. Con los años esa intuición encontró forma en el péndulo y en los Registros Akáshicos: la memoria de tu alma, donde está guardado todo lo que viviste y todo lo que viniste a ser.</p>
+        <p>Hoy acompaño a personas que se sienten estancadas, que repiten historias o que simplemente quieren entenderse mejor. No te voy a decir qué hacer: te ayudo a escuchar lo que tu alma ya sabe.</p>
+        <ul class="about__list">
+          <li>Lectora de Registros Akáshicos</li>
+          <li>Radiestesia y trabajo con péndulo</li>
+          <li>Rituales y círculos de luna</li>
+          <li>Espacio cuidado, sin juicios y confidencial</li>
+        </ul>
+        <div class="about__ctas">
+          <a href="#" class="btn btn--gold" data-wa="general">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+            Escribime
+          </a>
+          <a href="#" class="btn btn--ghost" id="igLink" hidden target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ig"/></svg>
+            La Chica del Péndulo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CÓMO ES ============ -->
+    <section class="section" id="como-es">
+      <header class="section__head reveal">
+        <p class="eyebrow">Cómo es una sesión</p>
+        <h2>Un ciclo, como el de la luna</h2>
+      </header>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step__moon step__moon--new" aria-hidden="true"></span>
+          <h3>Me escribís</h3>
+          <p>Elegís el servicio y coordinamos día, horario y modalidad por WhatsApp.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__moon step__moon--cres" aria-hidden="true"></span>
+          <h3>Preparás tus preguntas</h3>
+          <p>Te mando una pequeña guía para que llegues con tus intenciones claras.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__moon step__moon--full" aria-hidden="true"></span>
+          <h3>Abrimos tus Registros</h3>
+          <p>En un espacio cuidado, recibimos la guía que tu alma necesita hoy.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__moon step__moon--wane" aria-hidden="true"></span>
+          <h3>Integrás</h3>
+          <p>Te llevás un resumen escrito y te escribo a la semana para ver cómo seguís.</p>
+        </li>
+      </ol>
+
+      <div class="prep reveal">
+        <div class="prep__col">
+          <h3>Antes de tu encuentro</h3>
+          <ul class="checks">
+            <li>Pensá entre 3 y 5 preguntas abiertas: <em>“¿qué necesito aprender de…?”</em> mejor que <em>“¿sí o no?”</em></li>
+            <li>Tené a mano tu nombre completo de nacimiento.</li>
+            <li>Evitá el alcohol las 24 horas previas.</li>
+            <li>Si es virtual: un lugar tranquilo, auriculares y buena conexión.</li>
+            <li>Un vaso de agua y un cuaderno para anotar lo que sientas.</li>
+          </ul>
+        </div>
+        <div class="prep__col modes">
+          <div class="mode">
+            <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>
+            <div>
+              <h4>Presencial</h4>
+              <p>En Santiago del Estero Capital. La dirección exacta te la paso al confirmar el turno.</p>
+            </div>
+          </div>
+          <div class="mode">
+            <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"/></svg>
+            <div>
+              <h4>Virtual</h4>
+              <p>Por videollamada (Meet, Zoom o WhatsApp), desde cualquier ciudad o país. La energía no conoce distancias.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIOS ============ -->
+    <!-- TESTIMONIOS DE EJEMPLO: reemplazar por reales con permiso de cada persona -->
+    <section class="section" id="testimonios">
+      <header class="section__head reveal">
+        <p class="eyebrow">Testimonios</p>
+        <h2>Lo que se llevan</h2>
+      </header>
+      <div class="quotes">
+        <blockquote class="quote reveal">
+          <p>“Llegué con mil preguntas sobre mi pareja y me fui con una sola certeza: tenía que elegirme a mí. Dai tiene una calma que te abraza.”</p>
+          <footer><span class="avatar">SM</span><span><strong>Sofía M.</strong><br>Presencial · Santiago del Estero</span></footer>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>“Era escéptico, lo confieso. La lectura me ayudó a entender por qué repetía siempre la misma historia en el trabajo. El resumen escrito lo releo seguido.”</p>
+          <footer><span class="avatar">LR</span><span><strong>Lucas R.</strong><br>Virtual · Córdoba</span></footer>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>“La hice por videollamada desde España y la sentí igual de cercana. El círculo de luna nueva es mi ritual favorito cada vez que viajo a Santiago.”</p>
+          <footer><span class="avatar">CG</span><span><strong>Carolina G.</strong><br>Virtual · Madrid</span></footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section faq" id="preguntas">
+      <header class="section__head reveal">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Lo que suelen preguntarme</h2>
+      </header>
+      <div class="faq__list reveal">
+        <details>
+          <summary>¿Qué son los Registros Akáshicos?</summary>
+          <p>Son la memoria energética de tu alma: todo lo que viviste, sentiste y elegiste a lo largo de tu camino. Al abrirlos recibimos guía amorosa para tu presente.</p>
+        </details>
+        <details>
+          <summary>¿Tengo que creer en algo o tener experiencia previa?</summary>
+          <p>No. No pertenecen a ninguna religión y no hace falta saber nada. Solo venir con apertura y ganas de escucharte.</p>
+        </details>
+        <details>
+          <summary>¿Es adivinación? ¿Me vas a decir el futuro?</summary>
+          <p>No. Los Registros no predicen: te muestran lo que hoy necesitás ver para elegir con más conciencia. Tu libre albedrío siempre está primero.</p>
+        </details>
+        <details>
+          <summary>¿Funciona igual de forma virtual?</summary>
+          <p>Sí. La lectura es energética, así que la distancia no cambia nada. Muchas personas la prefieren porque la viven desde la comodidad de su casa.</p>
+        </details>
+        <details>
+          <summary>¿Dónde son los encuentros presenciales?</summary>
+          <p>En Santiago del Estero Capital. Te paso la dirección exacta cuando confirmamos el turno.</p>
+        </details>
+        <details>
+          <summary>¿Cómo se paga?</summary>
+          <p>Por transferencia o Mercado Pago. Para consultas desde otros países coordinamos el medio que te quede más cómodo.</p>
+        </details>
+        <details>
+          <summary>¿Reemplaza a un tratamiento médico o psicológico?</summary>
+          <p>No. Es un acompañamiento espiritual y de autoconocimiento que puede complementar, pero nunca reemplazar, a profesionales de la salud.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============ CTA FINAL ============ -->
+    <section class="final reveal">
+      <div class="final__moon" aria-hidden="true"></div>
+      <h2>Tu alma ya sabe el camino.<br><em>Escuchémosla juntas, juntos.</em></h2>
+      <p>Escribime y coordinamos tu encuentro, presencial o virtual.</p>
+      <a href="#" class="btn btn--gold btn--lg" data-wa="general">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+        Agendar por WhatsApp
+      </a>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <p class="brand brand--footer">La Chica del Péndulo</p>
+        <p>Daiana Peccia · Registros Akáshicos y terapias holísticas</p>
+        <p>Santiago del Estero Capital · Consultas virtuales a todo el mundo</p>
+      </div>
+      <div class="footer__links">
+        <a href="#" data-wa="general">WhatsApp +54 9 3855 97-2750</a>
+        <a href="#" id="igLinkFooter" hidden target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <p class="footer__legal">Los servicios son acompañamientos espirituales y de autoconocimiento. No reemplazan diagnósticos ni tratamientos médicos o psicológicos.</p>
+    <p class="footer__legal">© <span id="year"></span> La Chica del Péndulo</p>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp -->
+  <a href="#" class="wa-float" data-wa="general" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg>
+    <span class="wa-float__label">Agendá tu turno</span>
+  </a>
+
+  <!-- ============ ICONOS ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M12 21s-7-6.1-7-11.5a7 7 0 1 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></g></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor"/></g></symbol>
+    <symbol id="i-book" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 12c-4-3-10-4-16-3v27c6-1 12 0 16 3 4-3 10-4 16-3V9c-6-1-12 0-16 3z"/><path d="M24 12v27"/><path d="M24 4l1.2 2.6L28 7l-2.4 1.6.6 2.8L24 10l-2.2 1.4.6-2.8L20 7l2.8-.4z" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="i-lotus" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 36c-5-4-6-11 0-20 6 9 5 16 0 20z"/><path d="M24 36c-6 0-12-3-14-11 6-1 11 2 14 11zM24 36c6 0 12-3 14-11-6-1-11 2-14 11z"/><path d="M8 40h32"/></g></symbol>
+    <symbol id="i-pendulum" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 4v22"/><circle cx="24" cy="27.5" r="1.5"/><path d="M24 29l6 6-6 10-6-10z"/><path d="M12 40a14 14 0 0 1-3-6M36 40a14 14 0 0 0 3-6" stroke-dasharray="2 3"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M30 8a16 16 0 1 0 10 26A14 14 0 1 1 30 8z"/><path d="M36 12l.8 1.8 1.8.8-1.8.8-.8 1.8-.8-1.8-1.8-.8 1.8-.8z" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="i-circle" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="7"/><circle cx="24" cy="6" r="2.5"/><circle cx="24" cy="42" r="2.5"/><circle cx="6" cy="24" r="2.5"/><circle cx="42" cy="24" r="2.5"/><circle cx="11.3" cy="11.3" r="2.5"/><circle cx="36.7" cy="36.7" r="2.5"/><circle cx="36.7" cy="11.3" r="2.5"/><circle cx="11.3" cy="36.7" r="2.5"/></g></symbol>
+    <symbol id="i-spark" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 6c1.5 9 4 12 14 18-10 6-12.5 9-14 18-1.5-9-4-12-14-18 10-6 12.5-9 14-18z"/></g></symbol>
+  </svg>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
