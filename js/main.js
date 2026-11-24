@@ -6,27 +6,27 @@
 const CONFIG = {
   whatsapp: '5493855972750',           // +54 9 3855 97-2750, sin espacios ni signos
   instagram: 'https://www.instagram.com/la.chica.del.pendulo/',
-  saludo: 'Hola Daiana! 🌙 Te escribo desde tu página web.',
+  saludo: 'Hola Dai! 🌙 Te escribo desde tu página web.',
 };
 
-// Mensaje predeterminado por servicio. {modo} se reemplaza según el selector Virtual/Presencial.
+// Mensaje predeterminado por servicio. {modo} se reemplaza según el selector Online/Presencial.
 const SERVICES = {
-  general:   { modes: ['virtual', 'presencial'], msg: 'Quiero agendar un turno. ¿Me contás qué servicios y horarios tenés disponibles?' },
-  lectura:   { modes: ['virtual', 'presencial'], msg: 'Quiero agendar una *Lectura de Registros Akáshicos* ({modo}). ¿Qué días y horarios tenés disponibles?' },
-  sanacion:  { modes: ['virtual', 'presencial'], msg: 'Quiero agendar una *Sanación Akáshica* ({modo}). ¿Qué días y horarios tenés disponibles?' },
-  pendulo:   { modes: ['virtual', 'presencial'], msg: 'Quiero agendar una sesión de *Péndulo y Armonización de Chakras* ({modo}). ¿Qué días y horarios tenés disponibles?' },
-  lunanatal: { modes: ['virtual', 'presencial'], msg: 'Quiero agendar una *Lectura de Luna Natal* ({modo}). ¿Qué datos de nacimiento te tengo que pasar?' },
-  circulo:   { modes: ['presencial'],            msg: 'Quiero reservar mi lugar en el próximo *Círculo de Luna* ({modo}). ¿Cuándo es el próximo encuentro?' },
-  charla:    { modes: ['virtual'],               msg: 'Me gustaría tener la *primera charla gratuita de 15 minutos* para conocernos y ver qué encuentro me conviene.' },
+  general:            { modes: ['online', 'presencial'], msg: 'Quiero agendar un turno. ¿Me contás qué terapias y horarios tenés disponibles?' },
+  registros:          { modes: ['online', 'presencial'], msg: 'Quiero agendar una lectura de *Registros Akáshicos* ({modo}). ¿Qué días y horarios tenés disponibles?' },
+  tameana:            { modes: ['online', 'presencial'], msg: 'Quiero agendar una sesión de *Tameana* ({modo}). ¿Qué días y horarios tenés disponibles?' },
+  chakras:            { modes: ['online', 'presencial'], msg: 'Quiero agendar una *Armonización de chakras* ({modo}). ¿Qué días y horarios tenés disponibles?' },
+  pendulo:            { modes: ['online', 'presencial'], msg: 'Quiero agendar una sesión de *Péndulo hebreo* ({modo}). ¿Qué días y horarios tenés disponibles?' },
+  biodescodificacion: { modes: ['online', 'presencial'], msg: 'Quiero agendar una sesión de *Biodescodificación* ({modo}). ¿Qué días y horarios tenés disponibles?' },
+  bitacora:           { modes: ['online', 'presencial'], msg: 'Me interesa crear mi *Bitácora personal* con un programa personalizado ({modo}). ¿Cómo funciona?' },
 };
 
 const MODE_TEXT = {
-  virtual: 'virtual, por videollamada',
+  online: 'online',
   presencial: 'presencial, en Santiago del Estero',
 };
-const MODE_LABEL = { virtual: 'Virtual', presencial: 'Presencial' };
+const MODE_LABEL = { online: 'Online', presencial: 'Presencial' };
 
-let currentMode = 'virtual';
+let currentMode = 'online';
 
 document.documentElement.classList.remove('no-js');
 
@@ -46,16 +46,12 @@ function refreshWaLinks() {
   });
 }
 
-function refreshCardModes() {
-  document.querySelectorAll('.card[data-service]').forEach((card) => {
-    const modes = card.dataset.modes.split(' ');
-    const chip = card.querySelector('.card__modes');
-    if (!chip) return;
-    chip.textContent = modes.length > 1
-      ? 'Virtual · Presencial'
-      : `Solo ${MODE_LABEL[modes[0]].toLowerCase()}`;
-  });
-}
+document.querySelectorAll('.card[data-service]').forEach((card) => {
+  const chip = card.querySelector('.card__modes');
+  if (!chip) return;
+  const modes = card.dataset.modes.split(' ');
+  chip.textContent = modes.map((m) => MODE_LABEL[m]).join(' · ');
+});
 
 document.querySelectorAll('.toggle__opt').forEach((btn) => {
   btn.addEventListener('click', () => {
@@ -69,7 +65,6 @@ document.querySelectorAll('.toggle__opt').forEach((btn) => {
   });
 });
 
-refreshCardModes();
 refreshWaLinks();
 
 // ---------- Instagram ----------
@@ -141,83 +136,13 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
   // En el sur se ve espejada, así que reflejamos el dibujo horizontalmente.
   const r = 17, cx = 20, cy = 20;
   const rx = Math.abs(Math.cos(2 * Math.PI * p)) * r;
-  let d;
-  if (p < 0.5) {
-    const sweep = p < 0.25 ? 0 : 1;
-    d = `M${cx} ${cy - r} A${r} ${r} 0 0 1 ${cx} ${cy + r} A${rx} ${r} 0 0 ${sweep} ${cx} ${cy - r}Z`;
-  } else {
-    const sweep = p < 0.75 ? 0 : 1;
-    d = `M${cx} ${cy - r} A${r} ${r} 0 0 0 ${cx} ${cy + r} A${rx} ${r} 0 0 ${sweep} ${cx} ${cy - r}Z`;
-  }
+  const waxing = p < 0.5;
+  const outerSweep = waxing ? 1 : 0;
+  const innerSweep = waxing ? (p < 0.25 ? 0 : 1) : (p < 0.75 ? 0 : 1);
+  const d = `M${cx} ${cy - r} A${r} ${r} 0 0 ${outerSweep} ${cx} ${cy + r} A${rx} ${r} 0 0 ${innerSweep} ${cx} ${cy - r}Z`;
   const path = document.getElementById('moonphasePath');
   path.setAttribute('d', d);
   path.setAttribute('transform', `translate(${cx * 2} 0) scale(-1 1)`);
-})();
-
-// ---------- Cielo estrellado ----------
-(function sky() {
-  const canvas = document.getElementById('sky');
-  const ctx = canvas.getContext('2d');
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let stars = [], shooting = null, w = 0, h = 0, dpr = 1, raf = 0;
-
-  function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = window.innerWidth; h = window.innerHeight;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = Math.min(220, Math.round((w * h) / 6500));
-    stars = Array.from({ length: count }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.2 + 0.2,
-      a: Math.random() * 0.6 + 0.2,
-      s: Math.random() * 0.002 + 0.0006,
-      o: Math.random() * Math.PI * 2,
-      gold: Math.random() < 0.12,
-    }));
-    if (reduced) draw(0);
-  }
-
-  function draw(t) {
-    ctx.clearRect(0, 0, w, h);
-    for (const st of stars) {
-      const alpha = reduced ? st.a : st.a * (0.55 + 0.45 * Math.sin(t * st.s + st.o));
-      ctx.beginPath();
-      ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
-      ctx.fillStyle = st.gold ? `rgba(247,220,166,${alpha})` : `rgba(230,225,255,${alpha})`;
-      ctx.fill();
-    }
-    if (reduced) return;
-
-    if (!shooting && Math.random() < 0.0025) {
-      shooting = { x: Math.random() * w * 0.7 + w * 0.2, y: Math.random() * h * 0.35, life: 0 };
-    }
-    if (shooting) {
-      const s = shooting;
-      s.life += 1;
-      const len = 90, k = s.life * 9;
-      const x = s.x - k, y = s.y + k * 0.45;
-      const g = ctx.createLinearGradient(x, y, x + len, y - len * 0.45);
-      const fade = Math.max(0, 1 - s.life / 45);
-      g.addColorStop(0, `rgba(255,240,210,${0.9 * fade})`);
-      g.addColorStop(1, 'rgba(255,240,210,0)');
-      ctx.strokeStyle = g; ctx.lineWidth = 1.3;
-      ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + len, y - len * 0.45); ctx.stroke();
-      if (s.life > 45) shooting = null;
-    }
-    raf = requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  if (!reduced) {
-    raf = requestAnimationFrame(draw);
-    document.addEventListener('visibilitychange', () => {
-      cancelAnimationFrame(raf);
-      if (!document.hidden) raf = requestAnimationFrame(draw);
-    });
-  }
 })();
 
 // ---------- Botón flotante: mostrar el texto un momento ----------
