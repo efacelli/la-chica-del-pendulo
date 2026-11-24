@@ -153,3 +153,18 @@ setTimeout(() => {
 }, 3500);
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+// ---------- Galería: ver foto ampliada ----------
+const lightbox = document.getElementById('lightbox');
+if (lightbox && typeof lightbox.showModal === 'function') {
+  const lbImg = lightbox.querySelector('img');
+  document.querySelectorAll('.gallery__item').forEach((item) => {
+    item.addEventListener('click', () => {
+      lbImg.src = item.dataset.full;
+      lbImg.alt = item.querySelector('img').alt;
+      lightbox.showModal();
+    });
+  });
+  lightbox.querySelector('.lightbox__close').addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
+}
