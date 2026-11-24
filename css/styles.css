@@ -434,3 +434,17 @@ p { margin: 0 0 1em; }
 
 /* Gracias (cierre de la página) */
 .section--thanks { padding-top: 40px; }
+
+/* Testimonios reales: el largo ocupa la columna derecha completa */
+.quotes { grid-template-columns: 1fr 1.25fr; align-items: stretch; }
+.quote--long { grid-column: 2; grid-row: 1 / span 2; justify-content: flex-start; }
+.quote--long p { font-size: 1.2rem; }
+.quote--long { gap: 14px; }
+.quote--long em { font-style: normal; }
+.quote--long footer { margin-top: auto; }
+.quote p { font-size: 1.22rem; }
+.avatar svg { width: 30px; height: 30px; color: var(--purple); }
+@media (max-width: 860px) {
+  .quotes { grid-template-columns: 1fr; }
+  .quote--long { grid-column: auto; grid-row: auto; }
+}
