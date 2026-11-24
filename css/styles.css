@@ -4,10 +4,10 @@
    Paleta: rosa pastel + morado
    ========================================================= */
 :root {
-  --ivory: #fcf8f9;
-  --sand: #f3e9f0;
-  --pink: #f5d3e1;
-  --pink-soft: #fbedf3;
+  --ivory: #f8e3ec;
+  --sand: #f1d6e3;
+  --pink: #efc0d4;
+  --pink-soft: #f3d3e1;
   --pink-deep: #e2a3c0;
   --purple: #6a3d9a;
   --purple-deep: #3b2160;
@@ -79,7 +79,7 @@ p { margin: 0 0 1em; }
 /* ---------- Nav ---------- */
 .nav {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(252, 248, 249, .82);
+  background: rgba(248, 227, 236, .85);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
   transition: border-color .3s;
